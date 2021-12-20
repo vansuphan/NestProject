@@ -1,6 +1,5 @@
-import { EntityRepository, Repository } from "typeorm";
-import { Social } from "./social.entity";
+import { EntityRepository, Repository } from 'typeorm';
+import { Social } from './social.entity';
 
 @EntityRepository(Social)
-export class SocialsRepository extends Repository<Social> {
-}
+export class SocialsRepository extends Repository<Social> {}

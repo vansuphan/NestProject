@@ -6,4 +6,4 @@ services:
       - MYSQL_DATABASE="production"
       - MYSQL_PASSWORD: admin
     ports:
-      - 3066:3066
+      - 3306:3306
