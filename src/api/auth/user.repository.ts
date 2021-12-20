@@ -20,7 +20,7 @@ export class UserRepository extends Repository<User> {
       await user.save();
     } catch (error) {
       if (error.code === '23505') {
-        throw new ConflictException('Người dùng đã tồn tại');
+        throw new ConflictException('User haved');
       } else {
         console.log(error);
         throw new InternalServerErrorException({ message: error });

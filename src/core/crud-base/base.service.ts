@@ -1,16 +1,14 @@
-import { HttpException, Injectable } from "@nestjs/common";
-import { PaginatorOptions } from "./interface/pagination.interface";
-import { CorePaginateResult } from "../interfaces/pagination";
-import { Repository } from "typeorm";
-import { CustomBaseEntity } from "./base.entity";
-import { IBaseService } from "./ibase.service";
+import { HttpException, Injectable } from '@nestjs/common';
+import { PaginatorOptions } from './interface/pagination.interface';
+import { CorePaginateResult } from '../interfaces/pagination';
+import { Repository } from 'typeorm';
+import { CustomBaseEntity } from './base.entity';
+import { IBaseService } from './ibase.service';
 
 @Injectable()
-export class BaseService<T extends CustomBaseEntity> implements IBaseService<T> {
-  constructor(
-    protected readonly repository: Repository<T>
-  ) {
-  }
+export class BaseService<T extends CustomBaseEntity>
+  implements IBaseService<T> {
+  constructor(protected readonly repository: Repository<T>) {}
 
   async create(body: any): Promise<T> {
     try {

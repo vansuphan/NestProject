@@ -5,9 +5,9 @@ import {
   Type,
 } from '@nestjs/common';
 import { extname } from 'path';
+import path from 'path';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { randStr } from 'src/core/helpers/file';
-const path = require('path');
 import { existsSync, mkdirSync } from 'fs';
 import { diskStorage } from 'multer';
 
