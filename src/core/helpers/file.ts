@@ -1,4 +1,4 @@
-const randomstring = require('randomstring');
+import randomstring from 'randomstring';
 
 export function randStr(length?: number, charset?: string) {
   length = length || 12;

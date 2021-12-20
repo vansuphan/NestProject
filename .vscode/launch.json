@@ -2,6 +2,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "aws-sam",
+            "request": "direct-invoke",
+            "name": "maixephoangthienphat.com-api-main:src/core/helpers/file.randStr (nodejs12.x)",
+            "invokeTarget": {
+                "target": "code",
+                "projectRoot": "${workspaceFolder}/",
+                "lambdaHandler": "src/core/helpers/file.randStr"
+            },
+            "lambda": {
+                "runtime": "nodejs12.x",
+                "payload": {},
+                "environmentVariables": {}
+            }
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "Debug Nest Framework",
@@ -25,7 +40,13 @@
             "name": "Debug Jest Tests",
             "type": "node",
             "request": "launch",
-            "runtimeArgs": ["--inspect-brk", "${workspaceRoot}/node_modules/.bin/jest", "--runInBand", "--coverage", "false"],
+            "runtimeArgs": [
+                "--inspect-brk",
+                "${workspaceRoot}/node_modules/.bin/jest",
+                "--runInBand",
+                "--coverage",
+                "false"
+            ],
             "console": "integratedTerminal"
         }
     ]

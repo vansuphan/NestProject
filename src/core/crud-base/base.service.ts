@@ -43,17 +43,16 @@ export class BaseService<T extends CustomBaseEntity> implements IBaseService<T> 
       if (paginateOpts && paginateOpts.limit && paginateOpts.page) {
         const skips = paginateOpts.limit * (paginateOpts.page - 1);
         paginateOpts.limit = +paginateOpts.limit;
-        const [data, count] = await this.repository
-          .findAndCount({
-            skip: skips,
-            take: paginateOpts.limit,
-            where: query
-          });
+        const [data, count] = await this.repository.findAndCount({
+          skip: skips,
+          take: paginateOpts.limit,
+          where: query,
+        });
         return {
           total,
           statusCode: 201,
           isLastPage: paginateOpts.limit * paginateOpts.page > count,
-          data: data
+          data: data,
         };
       }
       const data = await this.repository.find();
@@ -62,7 +61,6 @@ export class BaseService<T extends CustomBaseEntity> implements IBaseService<T> 
       throw new HttpException(e, e.status || 500);
     }
   }
-
 
   async update(id: number, updates: any): Promise<T> {
     try {
@@ -77,7 +75,7 @@ export class BaseService<T extends CustomBaseEntity> implements IBaseService<T> 
     await this.repository.delete(id);
   }
 
-  //Todo: lọc qua trường deleted để get item
+  //Todo: Filter column deleted to get item
 
   // async findOneBy(query: object): Promise<any> {
   //   try {
