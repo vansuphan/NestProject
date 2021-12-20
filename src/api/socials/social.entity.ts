@@ -3,11 +3,11 @@ import {
   Column,
   Entity,
   PrimaryGeneratedColumn,
-  Unique
-} from "typeorm";
+  Unique,
+} from 'typeorm';
 
 @Entity()
-@Unique(["name"])
+@Unique(['name'])
 export class Social extends BaseEntity {
   constructor(name: string, link: string, isShow?: boolean) {
     super();
@@ -20,9 +20,9 @@ export class Social extends BaseEntity {
   id: number;
 
   @Column()
-  name: String;
+  name: string;
 
-  @Column({ default: false, type: "boolean" })
+  @Column({ default: false, type: 'boolean' })
   isShow: boolean;
 
   @Column()

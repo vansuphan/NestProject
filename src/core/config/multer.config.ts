@@ -59,9 +59,7 @@ export const multerOptions = {
           {
             status: false,
             status_code: 404,
-            message: `Định dạng file không được hỗ trợ ${extname(
-              file.originalname,
-            )}`,
+            message: `Type not suport ${extname(file.originalname)}`,
           },
           HttpStatus.BAD_REQUEST,
         ),

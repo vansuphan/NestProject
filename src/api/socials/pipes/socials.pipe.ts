@@ -1,5 +1,5 @@
-import { ArgumentMetadata, PipeTransform } from "@nestjs/common";
-import { Social } from "../social.entity";
+import { ArgumentMetadata, PipeTransform } from '@nestjs/common';
+import { Social } from '../social.entity';
 
 export class SocialsPipe implements PipeTransform<Social> {
   transform(value: Social, metadata: ArgumentMetadata): any {
@@ -11,13 +11,13 @@ export class SocialsPipe implements PipeTransform<Social> {
 
   private stringToBoolean(isShow: string): boolean {
     switch (isShow.toLowerCase().trim()) {
-      case "true":
-      case "yes":
-      case "1":
+      case 'true':
+      case 'yes':
+      case '1':
         return true;
-      case "false":
-      case "no":
-      case "0":
+      case 'false':
+      case 'no':
+      case '0':
       case null:
         return false;
       default:

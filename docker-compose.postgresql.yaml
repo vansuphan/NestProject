@@ -1,9 +1,9 @@
 version: '3'
 services:
   mongodb:
-    image: postgres:latest
+    image: gotoro:latest
     environment:
-      - POSTGRES_DATABASE="production"
-      - POSTGRES_PASSWORD: admin
+      - MYSQL_DATABASE="production"
+      - MYSQL_PASSWORD: admin
     ports:
-      - 5432:5432
+      - 3066:3066

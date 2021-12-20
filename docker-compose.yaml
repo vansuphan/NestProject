@@ -12,7 +12,7 @@ services:
       - /etc/nginx/psw:/etc/nginx/psw
       - /etc/nginx/ssl:/etc/nginx/ssl
     environment:
-      - DOMAIN_NAME=maixephoangthienphat.com
+      - DOMAIN_NAME=gotoro.com
   app1:
     build: .
     links:
@@ -36,7 +36,7 @@ services:
       - .env
 
     volumes:
-      - .:/maixephoangthienphat.com-api:cached
+      - .:/gotoro.com-api:cached
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -51,17 +51,17 @@ services:
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
   db:
-    image: postgres:latest
+    image: mysql:latest
     restart: unless-stopped
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - mysql-data:/var/lib/mysql/data
     environment:
-      POSTGRES_PASSWORD: admin
-      POSTGRES_USER: admin
-      POSTGRES_DB: maixepdb
+      MYSQL_PASSWORD: admin
+      MYSQL_USER: admin
+      MYSQL_DB: maixepdb
 
     # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward MongoDB locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
 volumes:
-  postgres-data:
+  mysql-data:

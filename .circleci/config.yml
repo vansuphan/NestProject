@@ -25,7 +25,7 @@ jobs:
       - checkout
       - run:
           name: Deploy over SSH
-          command: ssh -p 3000 root@103.90.226.237 "cd ../maixephoangthienphat.com-api; git pull; pm2 start maixephoangthienphat.com-api";
+          command: ssh -p 3000 root@103.90.226.237 "cd ../gotoro.com-api; git pull; pm2 start gotoro.com-api";
 
 workflows:
   version: 2

@@ -1,8 +1,8 @@
 {
-  "name": "maixephoangthienphat",
+  "name": "gotoro",
   "version": "0.0.1",
-  "description": "KMASoft",
-  "author": "KMASoft",
+  "description": "gotoro",
+  "author": "gotoro",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
