@@ -10,16 +10,16 @@ import { PhotoService } from './photo.service';
 
 @Controller('photos')
 export class PhotoController {
-  constructor(private photoService: PhotoService) { }
+  constructor(private photoService: PhotoService) {}
 
   // @UseGuards(AuthGuard())
   @Post()
-  @UseInterceptors(
-    FilesInterceptor('images', 10, fileConfig),
-  )
+  @UseInterceptors(FilesInterceptor('images', 10, fileConfig))
   async uploadImage(@UploadedFiles() images) {
-    console.log(images.map((e) => path.join(e.path)))
-    return await this.photoService.waterMark(images.map((e) => path.join(e.path)));
+    console.log(images.map((e: { path: string }) => path.join(e.path)));
+    return await this.photoService.waterMark(
+      images.map((e: { path: string }) => path.join(e.path)),
+    );
   }
 
   @Get()

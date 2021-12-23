@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateIntroductionDto } from './dto/create-introduction.dto';
 import { PaginatorOptions } from '../../core/crud-base/interface/pagination.interface';
-import { CorePaginateResult } from '../../core/interfaces/pagination';
+import { CorePaginateResult } from '../../../interfaces/pagination';
 
 @Injectable()
 export class IntroductionService extends BaseService<Introduction> {

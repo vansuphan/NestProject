@@ -25,13 +25,13 @@ export class Product extends BaseEntity {
   @Column('text', { array: true })
   images: string[];
 
-  @Column()
+  @Column('double', { default: 0 })
   price: number;
 
-  @Column()
+  @Column('double', { default: 0 })
   guarantee: number;
 
-  @Column({ nullable: true })
+  @Column('double', { default: 0 })
   sold: number;
 
   @Column({ name: 'is_hot_deal', default: false, type: 'boolean' })
@@ -46,6 +46,6 @@ export class Product extends BaseEntity {
   @Column({ name: 'actual_images', nullable: true })
   actualImages: string;
 
-  @Column({ nullable: true })
+  @Column('double', { default: 0 })
   views: number;
 }

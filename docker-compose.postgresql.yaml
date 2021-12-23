@@ -4,6 +4,6 @@ services:
     image: gotoro:latest
     environment:
       - MYSQL_DATABASE="production"
-      - MYSQL_PASSWORD: admin
+      - MYSQL_PASSWORD: Gotoro@123
     ports:
       - 3306:3306

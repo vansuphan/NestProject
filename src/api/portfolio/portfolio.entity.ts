@@ -1,9 +1,9 @@
-import { Column, Entity, Unique } from "typeorm";
-import { PortfolioEnum } from "./portfolio.enum";
-import { CustomBaseEntity } from "../../core/crud-base/base.entity";
+import { Column, Entity, Unique } from 'typeorm';
+import { PortfolioEnum } from './portfolio.enum';
+import { CustomBaseEntity } from '../../core/crud-base/base.entity';
 
 @Entity()
-@Unique(["id"])
+@Unique(['id'])
 export class Portfolio extends CustomBaseEntity {
   @Column()
   title: string;
@@ -11,7 +11,7 @@ export class Portfolio extends CustomBaseEntity {
   @Column()
   status: PortfolioEnum;
 
-  @Column("text", { array: true })
+  @Column('text', { array: true })
   images: string[];
 
   @Column()

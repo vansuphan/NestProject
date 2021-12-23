@@ -1,8 +1,14 @@
-import { IsArray, IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { PortfolioEnum } from "../portfolio.enum";
+import {
+  IsArray,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
+import { PortfolioEnum } from '../portfolio.enum';
 
 export class CreatePortfolioDto {
-  @IsNotEmpty({ message: "Tên dự án không được để trống" })
+  @IsNotEmpty({ message: 'Name is require' })
   @IsString()
   title: string;
 
@@ -11,19 +17,19 @@ export class CreatePortfolioDto {
   @IsEnum(PortfolioEnum)
   status: PortfolioEnum;
 
-  @IsNotEmpty({ message: "Mô tả dự án không được để trống" })
+  @IsNotEmpty({ message: 'Description is require' })
   @IsString()
   description: string;
 
-  @IsNotEmpty({ message: "Hình ảnh không được để trống" })
+  @IsNotEmpty({ message: 'Image is require' })
   @IsArray()
   images: string[];
 
-  @IsNotEmpty({ message: "Nội dung dự án không được để trống" })
+  @IsNotEmpty({ message: 'Content is require' })
   @IsString()
   content: string;
 
-  @IsNotEmpty({ message: "Link sản phẩm không được để trống" })
+  @IsNotEmpty({ message: 'Link is require' })
   @IsString()
   link: string;
 }

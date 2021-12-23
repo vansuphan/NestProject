@@ -8,7 +8,7 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { CorePaginateResult } from '../interfaces/pagination';
+import { CorePaginateResult } from '../../../interfaces/pagination';
 import { PaginatorOptions } from './interface/pagination.interface';
 import { CustomBaseEntity } from './base.entity';
 import { IBaseService } from './ibase.service';

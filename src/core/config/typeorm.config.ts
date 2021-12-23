@@ -1,6 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ConnectionOptions } from 'typeorm';
 
-export const typeOrmConfig: TypeOrmModuleOptions = {
+export const typeOrmConfig: ConnectionOptions = {
   type: 'mysql',
   host: 'localhost',
   port: 3306,
@@ -8,5 +9,13 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   password: 'Gotoro@123',
   database: 'gotoro',
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  synchronize: true,
+  migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+  migrationsTableName: 'migrations',
+  migrationsRun: false,
+  cli: {
+    entitiesDir: 'src',
+    migrationsDir: 'src/migrations',
+  },
+  synchronize: true, // process.env.NODE_ENV === 'development' ? true: false,
+  debug: true,
 };

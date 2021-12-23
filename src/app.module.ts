@@ -13,14 +13,16 @@ import { CategoryModule } from './api/category/category.module';
 import { PortfolioModule } from './api/portfolio/portfolio.module';
 import { EventsModule } from './events/events.module';
 import { IntroductionModule } from './api/introduction/introduction.module';
+import * as typeOrmConfig from './core/config/typeorm.config';
 
 @Module({
   imports: [
+    // TypeOrmModule.forRoot(typeOrmConfig),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get('DATABASE_URL'),
+        type: 'mysql',
+        // url: configService.get('DATABASE_URL'),
         synchronize: true,
         host: configService.get('DB_HOST'),
         port: configService.get('DB_PORT') ?? 3306,

@@ -1,25 +1,26 @@
 import {
-  BadRequestException, ConflictException,
-  Injectable, InternalServerErrorException,
-  NotFoundException
-} from "@nestjs/common";
-import { ProductRepository } from "./product.repository";
-import { InjectRepository } from "@nestjs/typeorm";
-import { CreateProductDto } from "./dto/create-product.dto";
-import { Product } from "./product.entity";
-import { PaginatedProductResultDto } from "./dto/paginated-product.dto";
-import { PaginationDto } from "../../core/dto/pagination.dto";
-import { CategoriesProduct } from "./enum-product.category";
-import { CategoryService } from "../category/category.service";
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
+import { ProductRepository } from './product.repository';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CreateProductDto } from './dto/create-product.dto';
+import { Product } from './product.entity';
+import { PaginatedProductResultDto } from './dto/paginated-product.dto';
+import { PaginationDto } from '../../core/dto/pagination.dto';
+import { CategoriesProduct } from './enum-product.category';
+import { CategoryService } from '../category/category.service';
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(ProductRepository)
     private readonly productRepository: ProductRepository,
-    private readonly categoryService: CategoryService
-  ) {
-  }
+    private readonly categoryService: CategoryService,
+  ) {}
 
   async createProduct(createProductDto: CreateProductDto): Promise<Product> {
     const product = new Product();
@@ -36,13 +37,12 @@ export class ProductService {
     product.specifications = createProductDto.specifications;
     product.views = createProductDto.views;
 
-
     try {
       await product.save();
       console.log(product);
     } catch (error) {
-      if (error.code === "23505") {
-        throw new ConflictException("Sản phẩm đã tồn tại");
+      if (error.code === '23505') {
+        throw new ConflictException('Sản phẩm đã tồn tại');
       } else {
         throw new InternalServerErrorException({ message: error });
       }
@@ -52,59 +52,58 @@ export class ProductService {
   }
 
   async getProducts(
-    paginationDto: PaginationDto
+    paginationDto: PaginationDto,
   ): Promise<PaginatedProductResultDto> {
     let products: Product[];
     let totalCount: number;
     let isLastPage: boolean;
     if (!paginationDto) {
       products = await this.productRepository
-        .createQueryBuilder("product")
+        .createQueryBuilder('product')
         .getMany();
     } else {
       const skippedItems = (paginationDto.page - 1) * paginationDto.limit;
 
       if (paginationDto.category) {
         totalCount = await this.productRepository
-          .createQueryBuilder("product")
-          .andWhere("(product.category LIKE :category)", {
-            category: `%${paginationDto.category}%`
-          }).getCount();
-        isLastPage =
-          paginationDto.page * paginationDto.limit >= totalCount;
-        products = await this.productRepository
-          .createQueryBuilder("product")
-          .andWhere("(product.category LIKE :category)", {
-            category: `%${paginationDto.category}%`
+          .createQueryBuilder('product')
+          .andWhere('(product.category LIKE :category)', {
+            category: `%${paginationDto.category}%`,
           })
-          .orderBy("category", "DESC")
+          .getCount();
+        isLastPage = paginationDto.page * paginationDto.limit >= totalCount;
+        products = await this.productRepository
+          .createQueryBuilder('product')
+          .andWhere('(product.category LIKE :category)', {
+            category: `%${paginationDto.category}%`,
+          })
+          .orderBy('category', 'DESC')
           .offset(skippedItems)
           .limit(paginationDto.limit)
           .getMany();
       } else if (paginationDto.search) {
         totalCount = await this.productRepository
-          .createQueryBuilder("product")
-          .andWhere("(product.title LIKE :search)", {
-            search: `%${paginationDto.search}%`
-          }).getCount();
-        isLastPage =
-          paginationDto.page * paginationDto.limit >= totalCount;
-        products = await this.productRepository
-          .createQueryBuilder("product")
-          .andWhere("(product.title LIKE :search)", {
-            search: `%${paginationDto.search}%`
+          .createQueryBuilder('product')
+          .andWhere('(product.title LIKE :search)', {
+            search: `%${paginationDto.search}%`,
           })
-          .orderBy("title", "DESC")
+          .getCount();
+        isLastPage = paginationDto.page * paginationDto.limit >= totalCount;
+        products = await this.productRepository
+          .createQueryBuilder('product')
+          .andWhere('(product.title LIKE :search)', {
+            search: `%${paginationDto.search}%`,
+          })
+          .orderBy('title', 'DESC')
           .offset(skippedItems)
           .limit(paginationDto.limit)
           .getMany();
       } else {
         totalCount = await this.productRepository.count();
-        isLastPage =
-          paginationDto.page * paginationDto.limit >= totalCount;
+        isLastPage = paginationDto.page * paginationDto.limit >= totalCount;
         products = await this.productRepository
           .createQueryBuilder()
-          .orderBy("title", "DESC")
+          .orderBy('title', 'DESC')
           .offset(skippedItems)
           .limit(paginationDto.limit)
           .getMany();
@@ -116,15 +115,17 @@ export class ProductService {
       page: paginationDto.page,
       limit: paginationDto.limit,
       isLastPage,
-      data: products
+      data: products,
     };
   }
 
   async getProductById(id: number): Promise<Product> {
     const found = await this.productRepository.findOne(id);
 
-    const titleCategory = await this.categoryService.getCategory(found.category);
-    console.log(titleCategory)
+    const titleCategory = await this.categoryService.getCategory(
+      found.category,
+    );
+    console.log(titleCategory);
     found.titleCategory = titleCategory.title;
     if (!found) {
       throw new NotFoundException(`Không tìm thấy sản phẩm này`);
@@ -145,7 +146,7 @@ export class ProductService {
     description?: string,
     specifications?: string,
     actualImages?: string,
-    views?: number
+    views?: number,
   ): Promise<Product> {
     const getProduct = await this.getProductById(id);
 

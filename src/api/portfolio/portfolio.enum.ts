@@ -1,4 +1,4 @@
 export enum PortfolioEnum {
-  DEPLOYING = "DEPLOYING",
-  DEPLOYED = "DEPLOYED"
+  DEPLOYING = 'DEPLOYING',
+  DEPLOYED = 'DEPLOYED',
 }

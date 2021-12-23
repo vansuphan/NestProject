@@ -11,7 +11,7 @@ import {
 import { BaseController } from '../../core/crud-base/base.controller';
 import { Introduction } from './introduction.entity';
 import { IntroductionService } from './introduction.service';
-import { CorePaginateResult } from '../../core/interfaces/pagination';
+import { CorePaginateResult } from '../../../interfaces/pagination';
 import { CreateIntroductionDto } from './dto/create-introduction.dto';
 import { AuthGuard } from '@nestjs/passport';
 

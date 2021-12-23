@@ -2,7 +2,7 @@ import { IsIn, IsNotEmpty, IsString } from 'class-validator';
 import { CategoriesProduct } from '../../product/enum-product.category';
 
 export class CreateCategoryDto {
-  @IsNotEmpty({ message: 'Tiêu đề không được để trống' })
+  @IsNotEmpty({ message: 'Title is require' })
   @IsString()
   title: string;
 
@@ -14,17 +14,16 @@ export class CreateCategoryDto {
       CategoriesProduct.OTHER,
     ],
     {
-      message:
-        'Loại mái xếp phải là 1 trong 4 loại: [Mái xếp, Mái hiên, Mái che hoặc Khác]',
+      message: 'Wrong',
     },
   )
   category: CategoriesProduct;
 
-  @IsNotEmpty({ message: 'Mô tả không được để trống' })
+  @IsNotEmpty({ message: 'Description is require' })
   @IsString()
   description: string;
 
-  @IsNotEmpty({ message: 'Hình ảnh không được để trống' })
+  @IsNotEmpty({ message: 'Image is require' })
   @IsString()
   image: string;
 }

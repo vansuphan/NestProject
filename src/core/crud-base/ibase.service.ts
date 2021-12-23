@@ -1,4 +1,4 @@
-import { CorePaginateResult } from '../interfaces/pagination';
+import { CorePaginateResult } from '../../../interfaces/pagination';
 import { PaginatorOptions } from './interface/pagination.interface';
 
 export interface IBaseService<T> {

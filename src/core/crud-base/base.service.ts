@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { PaginatorOptions } from './interface/pagination.interface';
-import { CorePaginateResult } from '../interfaces/pagination';
+import { CorePaginateResult } from '../../../interfaces/pagination';
 import { Repository } from 'typeorm';
 import { CustomBaseEntity } from './base.entity';
 import { IBaseService } from './ibase.service';
@@ -24,7 +24,7 @@ export class BaseService<T extends CustomBaseEntity>
     try {
       const item = await this.repository.findOne(id);
       if (!item) {
-        throw new HttpException("Not found", 404);
+        throw new HttpException('Not found', 404);
       }
       return item;
     } catch (e) {
